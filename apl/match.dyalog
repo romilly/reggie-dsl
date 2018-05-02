@@ -1,1 +1,1 @@
-﻿ match←{(('^',(flatten ⍵),'$')⎕S{⍵.Match})⍺}
+﻿ match←{(('^',(flatten ⍵),'$')⎕S{matched ⍵})⍺}
