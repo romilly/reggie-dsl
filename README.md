@@ -14,6 +14,8 @@ so let me know if you are!
 Here's the solution to a classic problem, converting variants of North American
 telephone numbers to international format.
 
+(The code is in the examples directory).
+
     from reggie.core import *
     
     d3 = digit + digit + digit
