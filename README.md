@@ -30,11 +30,9 @@ telephone numbers to international format.
         match = number.matches(text)
         if match is None:
             return None
-        if 'i' not in match:
-            match['i'] = '+1'
-        if 'area' not in match:
-            match['area'] = area_default
-        return '{i} ({area}) {exchange} {number}'.format(**match)
+        default(match, 'i','+1')
+        default(match, 'area', area_default)
+        return '{i} {area} {exchange} {number}'.format(**match)
     
     print(convert('(123) 345-2192'))
     print(convert('345-2192'))
