@@ -1,15 +1,17 @@
-## REGGIE - simpler regexs in Python
+## REGGIE - simpler regexes in Python
 
 Regular expressions are powerful but easy to get wrong and hard to debug.
 
 *REGGIE* is a simple Python DSL for creating and using regular expressions for validation and parsing.
 
 I'm using it for three projects at the moment, and it works well.
-
 It needs more tests and a lot more documentation.
+
 
 I'll add these if others are interested in using the package,
 so let me know if you are!
+
+Morten Kromberg and I are also developing an APL version which is coming along nicely.
 
 Here's the solution to a classic problem, converting variants of North American
 telephone numbers to international format.
