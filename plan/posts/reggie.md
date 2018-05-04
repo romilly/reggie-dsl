@@ -26,7 +26,7 @@ The CDRs we received were CSV files with a complex format and we decided to use 
 We liked regexes, but they were less popular with our business analysts.
 The BAs were happy with our Java code, but they found the regexes much less readable.
 
-Nat Pryce and I came up with a simple DSL (Domain Specific Language) which we used to
+[Nat Pryce](http://www.natpryce.com/) and I came up with a simple DSL (Domain Specific Language) which we used to
 describe and then analyse the CDRs. That made it much easier for our BAs and Testers to
 understand our code, and developers joining the team took to it pretty quickly.
 
