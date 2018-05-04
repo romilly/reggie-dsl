@@ -97,7 +97,8 @@ Regex: (one long line, split for readability, not a pretty sight!)
 
 For educational purposes, I've adapted the CDR specification/sample data from the
 official standard provided by [FCS](http://www.fcs.org.uk/member-groups/billing).
-I've ommitted a lot of fields and inserted spaces to clarify the layout. These are not present in a real file and
+I've omitted a lot of fields and inserted spaces to clarify the layout.
+The spaces are not present in a real file and
 the regex examples correctly assume there are no spaces in a real CDR.
 
 Below it you can see the definition of the format using **reggie**.
