@@ -131,12 +131,12 @@ will print
 ## Other Applications
 
 I've used *reggie* to build parsers for simple languages. Regular Expressions have some limitations -
-in particular, you can't use standard regular expressions to analyse recursioe grammars.
+in particular, you can't use standard regular expressions to analyse recursive grammars.
 But there are a surprising number of applications where a DSL without recursion does the trick.
 
 I've recently been working on an emulator for the venerable (and wonderful) PDP-8 computer, and I needed to create a
-Pthyon assembler for PAL, the PDP-8's assembly language. The assembler uses *reggie* and it's about an
-A4 page of fairly simple Python code.
+Python assembler for PAL, the PDP-8's assembly language. The assembler uses *reggie* and it's about an
+A4 page of fairly simple code.
 
 I've also been working on [Breadboarder](https://github.com/romilly/breadboarder),
 a DSL for documenting breadboard-based electronics projects. At present you have
