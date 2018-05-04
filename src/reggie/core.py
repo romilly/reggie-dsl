@@ -93,11 +93,21 @@ class Character(Term):
 
 
 class Multiple(Term):
-    def __init__(self, term):
+    def __init__(self, term, minimum, maximum):
         self.term = ncg(term)
+        self.minimum = minimum
+        self.maximum = maximum
+
+    def qualifier(self):
+        if self.minimum == 1 and self.maximum == 0:
+            return '+'
+        first = str(self.minimum)
+        second = '' if self.maximum == 0 else str(self.maximum)
+        return '{%s,%s}' % (first, second)
+
 
     def expr(self):
-        return self.term.expr()+'+'
+        return self.term.expr()+self.qualifier()
 
     def names(self):
         return self.term.names()
@@ -164,8 +174,8 @@ class Join(BinaryTerm):
         return self.left.expr()+self. right.expr()
 
 
-def multiple(term):
-    return Multiple(term)
+def multiple(term, minimum=1, maximum=1):
+    return Multiple(term, minimum, maximum)
 
 
 def optional(term):
@@ -204,17 +214,17 @@ class Space(Term):
         return '\s'
 
 
-class Texts(Term):
-    def __init__(self, *texts):
-        self.texts = texts
+class Options(Term):
+    def __init__(self, *options):
+        self.options = options
 
     def expr(self):
-        texts_ = '(%s)' % '|'.join(self.texts)
-        return texts_
+        result = '(%s)' % '|'.join(self.options)
+        return result
 
 
-def texts(*texts):
-    return Texts(*texts)
+def options(*texts):
+    return Options(*texts)
 
 def default(match, key, value):
     if key not in match:
@@ -224,6 +234,16 @@ def default(match, key, value):
 def opt(term):
     return optional(term)
 
+
+def csv(field1, *fields):
+    result = field1
+    for field in fields:
+        result = result + comma + field
+    return result
+
+comma = text(',')
+slash = text('/')
+colon = text(':')
 space = Space()
 plus = Text('+')
 digit = Digit()

@@ -7,7 +7,6 @@ Regular expressions are powerful but easy to get wrong and hard to debug.
 I'm using it for three projects at the moment, and it works well.
 It needs more tests and a lot more documentation.
 
-
 I'll add these if others are interested in using the package,
 so let me know if you are!
 
