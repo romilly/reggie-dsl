@@ -21,7 +21,7 @@ that Telecommunication Service Providers use to identify calls and other service
 their customers.
 
 The CDRs we received were CSV files with a complex format and we decided to use regexes
-(Regular Exprssions) to verify and interpret them.
+(Regular Expressions) to verify and interpret them.
 
 We liked regexes, but they were less popular with our business analysts.
 The BAs were happy with our Java code, but they found the regexes much less readable.
@@ -34,8 +34,7 @@ The Java syntax was a bit messy, though. These days I do most of my development 
 Python or APL, and a couple of years ago I realised that Python's syntax would allow a
 much cleaner implementation, which I called *reggie*
 
-It's been useful for several projects,
-and I decided to share it. You can now use *reggie* for your own work; it's
+It's been useful for several projects, and I decided to share it. You can now use *reggie* for your own work; it's
 [available on GitHub](https://github.com/romilly/reggie).
 
 ## A simple example 
@@ -73,7 +72,7 @@ Here's the output:
     +1 123 345 2192
     +1 123 345 2192
 
-# CDR Example
+## CDR Example
 
 The next example is inspired by the original Java-based project.
 
@@ -117,12 +116,11 @@ Below it you can see the definition of the format using **reggie**.
             called('called'),date, time, duration ,cc)
 
 Now you can try to parse some CDRs. The last one is wrongly formatted.
+Parsing a well-formed record returns a Python dictionary; parsing an ill-formed record returns `None`. So running
 
-Parsing a well-formed record returns a Python dictionary; parsing an ill-formed record returns `None`.
-
-print(cdr.matches('N,+448000077938,+441603761827,09/08/2015,07:00:12,2,'))
-print(cdr.matches('V,+442074958968,,05/08/2015,08:01:11,9,CALLRETURN'))
-print(cdr.matches('Rubbish!'))
+    print(cdr.matches('N,+448000077938,+441603761827,09/08/2015,07:00:12,2,'))
+    print(cdr.matches('V,+442074958968,,05/08/2015,08:01:11,9,CALLRETURN'))
+    print(cdr.matches('Rubbish!'))
   
 will print
 
@@ -130,7 +128,27 @@ will print
     {'caller': '+442074958968', 'call_type': 'V', 'date': '05/08/2015', 'duration': '9', 'call_class': 'CALLRETURN', 'time': '08:01:11'}
     None
 
+## Other Applications
 
+I've used *reggie* to build parsers for simple languages. Regular Expressions have some limitations -
+in particular, you can't use standard regular expressions to analyse recursioe grammars.
+But there are a surprising number of applications where a DSL without recursion does the trick.
+
+I've recently been working on an emulator for the venerable (and wonderful) PDP-8 computer, and I needed to create a
+Pthyon assembler for PAL, the PDP-8's assembly language. The assembler uses *reggie* and it's about an
+A4 page of fairly simple Python code.
+
+I've also been working on [Breadboarder](https://github.com/romilly/breadboarder),
+a DSL for documenting breadboard-based electronics projects. At present you have
+to define your project using Python code but I think I can use *reggie* to create a natural-language version.
+
+Watch this space!
+
+Morten Kromberg and I have also been experimenting with an APL version of *reggie*. APL syntax is even better suited to
+*reggie*, and the experiments look very promising. We've included our current APL prototype in the main GitHub project
+and I'll blog about that once the code has stabilised.
+
+In the meantime, take a look at the Python version and leave a comment to let me know what you think of it!
 
 
 
