@@ -5,15 +5,15 @@ There’s an old programmer’s joke:
     A programmer has a problem, and she decides to use regular expressions.
     Now she has two problems.
 
-Unless you use Regular Expressions regularly (sorry for the awful pun!), they can be
+Unless you use regular expressions regularly (sorry for the awful pun!), they can be
 
 * Hard to read
 * Hard to write
 * Hard to debug
 
-This package, called 
+*reggie* makes regular expressions easy to use.
 
-I've used them for a number of projects over the years, but the idea for *reggie* came
+I've used regular expressions for a number of projects over the years, but the idea for *reggie* came
 about a decade ago.
 
 I was working on a project where we had to parse CDRs (Call Detail Records). These are text files
