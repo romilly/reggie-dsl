@@ -39,6 +39,7 @@ def one_of(*options, escape=False):
 def names_in(regex):
     pass
 
+
 def match(regex, text, line=True):
     if line:
         regex = '^%s$' % regex
