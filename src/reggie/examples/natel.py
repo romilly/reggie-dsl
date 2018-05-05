@@ -2,19 +2,19 @@ from reggie.core import *
 
 d3 = digit + digit + digit
 d4 = d3 + digit
-international = opt(text('+1').called('i'))
-area = opt(osp + lp + d3.called('area') + rp)
-local = osp + d3.called('exchange') + dash + d4.called('number')
+international = name(optional(escape('+1')),'i')
+area = optional(osp + lp + name(d3,'area') + rp)
+local = osp + name(d3,'exchange') + dash + name(d4,'number')
 number = international + area + local
 
 
 def convert(text, area_default='123'):
-    match = number.matches(text)
-    if match is None:
+    matched = match(number, text)
+    if matched is None:
         return None
-    default(match, 'i','+1')
-    default(match, 'area', area_default)
-    return '{i} {area} {exchange} {number}'.format(**match)
+    default(matched, 'i','+1')
+    default(matched, 'area', area_default)
+    return '{i} {area} {exchange} {number}'.format(**matched)
 
 print(convert('(123) 345-2192'))
 print(convert('345-2192'))
