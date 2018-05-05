@@ -8,6 +8,7 @@ def escape(text):
 def escape_character(ch):
     return ch if ch not in '.^$*+?{}[]\|()' else r'\%s' % ch
 
+
 def ncg(term):
     if term.startswith('(') and term.endswith(')'):
         return term
