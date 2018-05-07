@@ -2,13 +2,14 @@ from setuptools import setup
 
 setup(
     name='reggie-dsl',
-    version='0.1a1',
+    version='0.1a2',
     packages=['reggie', 'examples'],
     url='https://github.com/romilly/reggie',
     license='MIT',
     author='romilly',
     author_email='romilly.cocking@gmail.com',
     description='Python DSL for Regular Expressions',
+    long_description='reggie-dsl lets Python developers create regular expressions that are readable and easy to use.',
     classifiers=[
         'Development Status :: 3 - Alpha',
 
