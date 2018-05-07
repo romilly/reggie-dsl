@@ -1,6 +1,6 @@
 from reggie.core import *
 
-d3 = multiple(digit, 3, 3)
+d3 = multiple(digit, 3)
 d4 = d3 + digit
 international = name(optional(escape('+1')),'i')
 area = optional(osp + lp + name(d3,'area') + rp)
@@ -15,6 +15,7 @@ def convert(text, area_default='123'):
     default(matched, 'i','+1')
     default(matched, 'area', area_default)
     return '{i} {area} {exchange} {number}'.format(**matched)
+
 
 if __name__ == '__main__':
     print(convert('(123) 345-2192'))

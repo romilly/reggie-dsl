@@ -16,7 +16,12 @@ def ncg(term):
         return '(?:%s)' % term
 
 
-def multiple(term, minimum=1, maximum=0):
+def multiple(term, minimum=None, maximum=None):
+    if maximum is None:
+        if minimum is None:
+            return term+'+'
+        else:
+            maximum = minimum
     term = ncg(term)
     if minimum == 1 and maximum == 0:
         return term+'+'
@@ -55,12 +60,15 @@ def match(regex, text, line=True):
                     result[name] = value
     return result
 
+
 def name(text, name):
     return '(?P<%s>%s)' % (name, text)
+
 
 def default(matched, key, value):
     if key not in matched:
         matched[key] = value
+
 
 def csv(field1, *fields):
     result = field1
