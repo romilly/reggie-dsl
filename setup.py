@@ -1,7 +1,7 @@
 from setuptools import setup
 
 setup(
-    name='reggie',
+    name='reggie-dsl',
     version='0.1a1',
     packages=['reggie', 'examples'],
     url='https://github.com/romilly/reggie',
