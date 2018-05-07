@@ -1,5 +1,7 @@
 # Simpler regular expressions in Python
 
+[![Build status](https://travis-ci.org/romilly/reggie.svg?master)](https://travis-ci.org/romilly)
+
 Regular Expressions are powerful but they can be hard to tame.
 
 There’s an old programmer’s joke:
