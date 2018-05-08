@@ -64,5 +64,11 @@ class ReggieTest(TestCase):
         assert_that(match(term,'CCC'), is_not(None))
         assert_that(match(term,'D'), is_not(None))
 
+    def test_multiple(self):
+        term = name(multiple(osp + one_of('NOP', 'CLA', 'CLL', 'CMA', 'CML', 'RAR', 'RAL', 'RTR', 'RTL', 'IAC')),
+                  'group1')
+        assert_that(match(term,'CLL'), is_not(None))
+        assert_that(match(term, 'CLL CMA'), is_not(None))
+
 
 

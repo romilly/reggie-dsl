@@ -17,12 +17,12 @@ def ncg(term):
 
 
 def multiple(term, minimum=None, maximum=None):
+    term = ncg(term)
     if maximum is None:
         if minimum is None:
             return term+'+'
         else:
             maximum = minimum
-    term = ncg(term)
     if minimum == 1 and maximum == 0:
         return term+'+'
     if minimum == 0 and maximum == 1:
