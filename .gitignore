@@ -136,3 +136,5 @@ ENV/
 .ropeproject
 
 plan/resources/
+.idea/
+.scannerwork/
