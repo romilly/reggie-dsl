@@ -17,16 +17,16 @@ def ncg(term):
 
 
 def multiple(term, minimum=None, maximum=None):
+    def is_one_or_more():
+        if (minimum is None and maximum is None) or (minimum == 1) and maximum == 0:
+            return True
     term = ncg(term)
-    if maximum is None:
-        if minimum is None:
-            return term+'+'
-        else:
-            maximum = minimum
-    if minimum == 1 and maximum == 0:
+    if is_one_or_more():
         return term+'+'
     if minimum == 0 and maximum == 1:
             return term+'?'
+    if maximum is None:
+        maximum = minimum
     first = str(minimum)
     second = '' if maximum == 0 else str(maximum)
     return '%s{%s,%s}' % (term, first, second)
@@ -36,14 +36,8 @@ def optional(term):
     return ncg(term)+'?'
 
 
-def one_of(*options, escape=False):
-    if escape:
-        options = map(escape, options)
+def one_of(*options):
     return '(%s)' % '|'.join(options)
-
-
-def names_in(regex):
-    pass
 
 
 def match(regex, text, line=True):

@@ -1,3 +1,4 @@
+import unittest
 from unittest import TestCase
 from reggie.core import *
 
@@ -23,6 +24,9 @@ class NATelTest(TestCase):
             text = self.convert(number)
             self.assertEqual(text, '+1 123 345 2192')
 
+    def test_returns_None_if_no_match(self):
+        self.assertTrue(self.convert('foo-bar') is None)
+
     def convert(self, number):
         area_default='123'
         matched = match(self.regex, number)
@@ -31,3 +35,6 @@ class NATelTest(TestCase):
         default(matched, 'i','+1')
         default(matched, 'area', area_default)
         return '{i} {area} {exchange} {number}'.format(**matched)
+
+
+

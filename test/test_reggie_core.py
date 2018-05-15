@@ -1,4 +1,4 @@
-from unittest import TestCase
+import unittest
 
 from hamcrest import equal_to, is_not
 from hamcrest.core import assert_that
@@ -6,7 +6,7 @@ from hamcrest.core import assert_that
 from reggie.core import *
 
 
-class ReggieTest(TestCase):
+class ReggieTest(unittest.TestCase):
     def test_matches_digit(self):
         term = digit
         assert_that(match(term,'1'), is_not(None))
@@ -33,6 +33,12 @@ class ReggieTest(TestCase):
         assert_that(match(term,'a'), equal_to(None))
         assert_that(match(term,'A1'), equal_to(None))
 
+    def test_or_escapes(self):
+        term = one_of(escape('+1'), digit)
+        assert_that(match(term,'+1'), is_not(None))
+        assert_that(match(term,'1'), is_not(None))
+        assert_that(match(term,'a'), equal_to(None))
+        assert_that(match(term,'+2'), equal_to(None))
 
     def test_add(self):
         term = capital + digit
@@ -54,7 +60,6 @@ class ReggieTest(TestCase):
         assert_that(match(term,'AA'), is_not(None))
         assert_that(match(term,'1'), equal_to(None))
 
-        # TODO: add tests for NamedGroups
 
     def test_texts(self):
         term = one_of('AA','BB','CCC','D')
@@ -67,8 +72,41 @@ class ReggieTest(TestCase):
     def test_multiple(self):
         term = name(multiple(osp + one_of('NOP', 'CLA', 'CLL', 'CMA', 'CML', 'RAR', 'RAL', 'RTR', 'RTL', 'IAC')),
                   'group1')
-        assert_that(match(term,'CLL'), is_not(None))
-        assert_that(match(term, 'CLL CMA'), is_not(None))
+        assert_that('group1' in match(term,'CLL'))
+        assert_that(match(term, 'CLL CMA')['group1'], equal_to('CLL CMA'))
+
+    def test_one_or_more(self):
+        term = multiple('foo',1,0)
+        assert_that(match(term,'foo'), is_not(None))
+        assert_that(match(term,'foofoo'), is_not(None))
+        assert_that(match(term,'foobar'), equal_to(None))
+
+    def test_two(self):
+        term = multiple('foo',2)
+        assert_that(match(term,'foo'), equal_to(None))
+        assert_that(match(term,'foofoo'), is_not(None))
+        assert_that(match(term,'foobar'), equal_to(None))
+
+    def test_multiple_ranged(self):
+        term = multiple('foo',1,2)
+        assert_that(match(term,''), equal_to(None))
+        assert_that(match(term,'foo'), is_not(None))
+        assert_that(match(term,'foofoo'), is_not(None))
+        assert_that(match(term,'foofoofoo'), equal_to(None))
+
+    def test_opt(self):
+        term = multiple('foo',0,1)
+        assert_that(match(term,''), is_not(None))
+        assert_that(match(term,'foo'), is_not(None))
+        assert_that(match(term,'foofoo'), equal_to(None))
+
+    def test_csv(self):
+        term=csv('A')
+        assert_that(match(term,'A'), is_not(None))
+        assert_that(match(term,'A,BB,C'), equal_to(None))
+        term=csv('A','BB','C')
+        assert_that(match(term,'A,BB,C'), is_not(None))
+
 
 
 
