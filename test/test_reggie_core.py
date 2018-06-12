@@ -1,4 +1,5 @@
 import unittest
+import inspect
 
 from hamcrest import equal_to, is_not
 from hamcrest.core import assert_that
@@ -106,6 +107,9 @@ class ReggieTest(unittest.TestCase):
         assert_that(match(term,'A,BB,C'), equal_to(None))
         term=csv('A','BB','C')
         assert_that(match(term,'A,BB,C'), is_not(None))
+
+
+
 
 
 

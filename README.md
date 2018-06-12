@@ -1,6 +1,6 @@
 # Simpler regular expressions in Python
 
-[![Build status](https://travis-ci.org/romilly/reggie.svg?master)](https://travis-ci.org/romilly)
+![Build status](https://api.travis-ci.org/romilly/reggie-dsl.svg?branch=master)
 
 Regular Expressions are powerful but they can be hard to tame.
 
@@ -20,8 +20,8 @@ Unless you use regular expressions regularly (sorry for the awful pun!), they ca
 I've used regular expressions for a number of projects over the years, but the idea for *reggie* came
 about a decade ago.
 
-I was working on a project where we had to parse CDRs (Call Detail Records). These are text files
-that Telecommunication Service Providers use to identify calls and other services billable to
+I was working on a project where [Nat Pryce](http://www.natpryce.com/) and I had to parse CDRs (Call Detail Records).
+These are text files that Telecommunication Service Providers use to identify calls and other services billable to
 their customers.
 
 The CDRs we received were CSV files with a complex format and we decided to use regexes
