@@ -15,9 +15,9 @@ class NATelTest(TestCase):
 
     def test_parses_number_variants(self):
         for number in self.test_numbers:
-            self.assertTrue(match(self.regex, number),'%s should match %s' % (self.regex, number))
+            self.assertTrue(match_line(self.regex, number), '%s should match_line %s' % (self.regex, number))
         rubbish = 'rubbish'
-        self.assertFalse(match(self.regex, rubbish), '%s should not match %s' % (self.regex, rubbish))
+        self.assertFalse(match_line(self.regex, rubbish), '%s should not match_line %s' % (self.regex, rubbish))
 
     def test_supplies_defaults(self):
         for number in self.test_numbers:
@@ -29,7 +29,7 @@ class NATelTest(TestCase):
 
     def convert(self, number):
         area_default='123'
-        matched = match(self.regex, number)
+        matched = match_line(self.regex, number)
         if matched is None:
             return None
         default(matched, 'i','+1')

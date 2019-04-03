@@ -12,6 +12,6 @@ cdr = csv(call_type, name(number,'caller'), name(optional(number),'called'),date
 
 
 if __name__ == '__main__':
-    print(match(cdr,'N,+448000077938,+441603761827,09/08/2015,07:00:12,2,'))
-    print(match(cdr,'V,+442074958968,,05/08/2015,08:01:11,9,CALLRETURN'))
-    print(match(cdr, 'Rubbish!'))
+    print(match_line(cdr, 'N,+448000077938,+441603761827,09/08/2015,07:00:12,2,'))
+    print(match_line(cdr, 'V,+442074958968,,05/08/2015,08:01:11,9,CALLRETURN'))
+    print(match_line(cdr, 'Rubbish!'))

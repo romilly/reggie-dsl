@@ -59,7 +59,7 @@ telephone numbers to international format.
     
     
     def convert(text, area_default='123'):
-        matched = match(number, text)
+        matched = match_line(number, text)
         if matched is None:
             return None
         default(matched, 'i','+1')

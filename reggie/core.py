@@ -44,14 +44,16 @@ def whole_line(regex):
     return '^%s$' % regex
 
 
-def match(regex, text, line=True):
-    if line:
-        regex=whole_line(regex)
+def match(regex, text):
     rx = re.compile(regex)
     matched = rx.search(text)
     if matched is None:
         return None
     return find_named_matches(matched, rx.groupindex.keys())
+
+
+def match_line(regex, text):
+    return match(whole_line(regex), text)
 
 
 def find_all(regex, text):
