@@ -1,5 +1,13 @@
 # Simpler regular expressions in Python
 
+This version (still alpha) inroduces a breaking chage to the API.
+
+The method `match` actually tries tp match an entire string; in other words,
+the regex you provide is prefixes by `^` and followed by `$`
+
+That method is now called `match_line`; `match` will now, by default,
+try to match anywhere within the string being searched.
+
 ![Build status](https://api.travis-ci.org/romilly/reggie-dsl.svg?branch=master)
 
 Regular Expressions are powerful but they can be hard to tame.
