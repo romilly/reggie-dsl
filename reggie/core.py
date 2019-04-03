@@ -40,19 +40,38 @@ def one_of(*options):
     return '(%s)' % '|'.join(options)
 
 
+def whole_line(regex):
+    return '^%s$' % regex
+
+
 def match(regex, text, line=True):
     if line:
-        regex = '^%s$' % regex
+        regex=whole_line(regex)
     rx = re.compile(regex)
-    matched = rx.match(text)
+    matched = rx.search(text)
     if matched is None:
         return None
-    result = {}
-    for name in rx.groupindex.keys():
-        value = matched.group(name)
-        if value:
-                    result[name] = value
+    return find_named_matches(matched, rx.groupindex.keys())
+
+
+def find_all(regex, text):
+    rx = re.compile(regex)
+    matched = rx.finditer(text)
+    names = rx.groupindex.keys()
+    result = []
+    for match in matched:
+        d = find_named_matches(match, names)
+        result.append(d)
     return result
+
+
+def find_named_matches(match, names):
+    d = {}
+    for name in names:
+        value = match.group(name)
+        if value:
+            d[name] = value
+    return d
 
 
 def name(text, name):
