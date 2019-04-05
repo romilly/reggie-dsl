@@ -2,7 +2,7 @@ from setuptools import setup
 
 setup(
     name='reggie-dsl',
-    version='0.1a4',
+    version='0.1a5',
     packages=['reggie', 'examples'],
     url='https://github.com/romilly/reggie',
     license='MIT',
