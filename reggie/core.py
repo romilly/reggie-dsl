@@ -40,11 +40,15 @@ def one_of(*options):
     return '(%s)' % '|'.join(options)
 
 
-def whole_line(regex):
-    return '^%s$' % regex
-
-
 def match(regex, text):
+    rx = re.compile(regex)
+    matched = rx.match(text)
+    if matched is None:
+        return None
+    return find_named_matches(matched, rx.groupindex.keys())
+
+
+def search(regex, text):
     rx = re.compile(regex)
     matched = rx.search(text)
     if matched is None:
@@ -53,7 +57,7 @@ def match(regex, text):
 
 
 def match_line(regex, text):
-    return match(whole_line(regex), text)
+    return match(regex+'$', text)
 
 
 def find_all(regex, text):

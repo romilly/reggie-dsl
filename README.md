@@ -163,8 +163,7 @@ to define your project using Python code but I think I can use *reggie* to creat
 Watch this space!
 
 Morten Kromberg and I have also been experimenting with an APL version of *reggie*. APL syntax is well suited to
-*reggie*, and the experiments look very promising. We've included our current APL prototype in the main GitHub project
-and I'll blog about that once the code has stabilised.
+*reggie*, and the experiments look very promising. I'll blog about that once the code has stabilised.
 
 In the meantime, take a look at the Python version and leave a comment to let me know what you think of it!
 

@@ -111,3 +111,15 @@ class ReggieTest(unittest.TestCase):
         term = name(one_of('11', '00'), 'twos')
         assert_that(find_all(term, '110101001'),
                     equal_to([{'twos': '11'}, {'twos': '00'}]))
+
+    # match in re, and in reggie, matches from the start of the string
+    # search matches anywhere within the string
+    # matchline attempts to match the whole line
+    def test_match(self):
+        term = 'A'
+        assert_that(match(term, 'A'), is_not(None))
+        assert_that(match(term, 'A1'), is_not(None))
+        assert_that(match_line(term, 'A1'), equal_to(None)) # to illustrate the difference
+        assert_that(match(term, '1A'), equal_to(None))
+        assert_that(search(term, '1A'), is_not(None)) # to illustrate the difference
+
